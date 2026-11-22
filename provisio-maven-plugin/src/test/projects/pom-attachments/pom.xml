@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ca.vanzyl.provisio.maven.plugins.its</groupId>
+  <artifactId>pom-attachments</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>ca.vanzyl.provisio.maven.plugins</groupId>
+        <artifactId>provisio-maven-plugin</artifactId>
+        <version>${it-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>docs</id>
+            <goals>
+              <goal>provision</goal>
+            </goals>
+            <configuration>
+              <descriptorDirectory>${project.basedir}/src/main/provisio/docs</descriptorDirectory>
+              <outputDirectory>${project.build.directory}/docs</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>sources</id>
+            <goals>
+              <goal>provision</goal>
+            </goals>
+            <configuration>
+              <descriptorDirectory>${project.basedir}/src/main/provisio/sources</descriptorDirectory>
+              <outputDirectory>${project.build.directory}/sources</outputDirectory>
+              <attachmentType>jar</attachmentType>
+              <attachmentClassifier>sources</attachmentClassifier>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

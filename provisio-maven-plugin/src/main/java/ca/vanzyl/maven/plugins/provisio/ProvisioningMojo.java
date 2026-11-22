@@ -37,6 +37,19 @@ public class ProvisioningMojo extends BaseMojo {
     @Parameter(defaultValue = "${project.build.directory}/${project.artifactId}-${project.version}")
     private File outputDirectory;
 
+    /**
+     * Maven artifact type for an attached archive. Defaults to the archive extension.
+     */
+    @Parameter
+    private String attachmentType;
+
+    /**
+     * Maven classifier for archives attached by this execution. Use separate executions
+     * when archives need different classifiers.
+     */
+    @Parameter
+    private String attachmentClassifier;
+
     @Override
     public void execute() throws MojoExecutionException {
         if (skipProvision) {
@@ -82,8 +95,10 @@ public class ProvisioningMojo extends BaseMojo {
                 continue;
             }
             ProvisioArchive provisioArchive = result.getArchives().get(0);
-            if (project.getPackaging().equals("jar") || project.getPackaging().equals("takari-jar")) {
-                projectHelper.attachArtifact(project, provisioArchive.extension(), provisioArchive.file());
+            String packaging = project.getPackaging();
+            if (packaging.equals("pom") || packaging.equals("jar") || packaging.equals("takari-jar")) {
+                String type = attachmentType != null ? attachmentType : provisioArchive.extension();
+                projectHelper.attachArtifact(project, type, attachmentClassifier, provisioArchive.file());
                 continue;
             }
             // We have something like provisio or presto-plugin

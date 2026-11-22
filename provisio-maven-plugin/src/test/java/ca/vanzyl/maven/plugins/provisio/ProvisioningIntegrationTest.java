@@ -15,15 +15,18 @@
  */
 package ca.vanzyl.maven.plugins.provisio;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import io.takari.maven.testing.TestProperties;
 import io.takari.maven.testing.TestResources;
 import io.takari.maven.testing.executor.MavenRuntime;
 import io.takari.maven.testing.executor.MavenRuntime.MavenRuntimeBuilder;
 import io.takari.maven.testing.executor.MavenVersions;
 import io.takari.maven.testing.executor.junit.MavenJUnitTestRunner;
 import java.io.File;
+import java.nio.file.Files;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -102,6 +105,25 @@ public class ProvisioningIntegrationTest {
         assertTrue(
                 "core archive was unpacked into server",
                 file(basedir, "server/target/server-1.0/core.txt").isFile());
+    }
+
+    @Test
+    public void testInstallArchivesWithPomPackaging() throws Exception {
+        File basedir = resources.getBasedir("pom-attachments");
+
+        maven.forProject(basedir).execute("install").assertErrorFreeLog();
+
+        File installed = file(
+                new TestProperties().getLocalRepository(), "ca/vanzyl/provisio/maven/plugins/its/pom-attachments/1.0");
+        assertArrayEquals(
+                Files.readAllBytes(file(basedir, "pom.xml").toPath()),
+                Files.readAllBytes(file(installed, "pom-attachments-1.0.pom").toPath()));
+        for (String archive : new String[] {"pom-attachments-1.0.zip", "pom-attachments-1.0-sources.jar"}) {
+            assertArrayEquals(
+                    Files.readAllBytes(file(basedir, "target/" + archive).toPath()),
+                    Files.readAllBytes(file(installed, archive).toPath()));
+        }
+        assertFalse(file(installed, "pom-attachments-1.0.jar").exists());
     }
 
     private static File file(File directory, String name) {

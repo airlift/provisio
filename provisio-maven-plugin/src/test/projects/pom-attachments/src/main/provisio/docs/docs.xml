@@ -1,0 +1,6 @@
+<runtime>
+  <archive name="pom-attachments-1.0.zip" useRoot="false"/>
+  <fileSet to="/">
+    <directory path="${basedir}/src/main/content"/>
+  </fileSet>
+</runtime>
