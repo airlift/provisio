@@ -26,7 +26,7 @@
     <version>74</version>
   </parent>
 
-  <groupId>ca.vanzyl</groupId>
+  <groupId>io.airlift</groupId>
   <artifactId>provisio</artifactId>
   <version>2.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -108,17 +108,17 @@
         <version>1</version>
       </dependency>
       <dependency>
-        <groupId>ca.vanzyl</groupId>
+        <groupId>io.airlift</groupId>
         <artifactId>provisio-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>ca.vanzyl</groupId>
+        <groupId>io.airlift</groupId>
         <artifactId>provisio-model</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>ca.vanzyl</groupId>
+        <groupId>io.airlift</groupId>
         <artifactId>provisio-maven</artifactId>
         <version>${project.version}</version>
       </dependency>

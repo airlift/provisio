@@ -46,7 +46,7 @@ public class ValidatorIntegrationTest {
 
         maven.forProject(basedir)
                 .execute("provisio:validateDependencies")
-                .assertLogText("[ERROR] Failed to execute goal ca.vanzyl.provisio.maven.plugins:provisio-maven-plugin:")
+                .assertLogText("[ERROR] Failed to execute goal io.airlift:provisio-maven-plugin:")
                 .assertLogText(
                         "validateDependencies (default-cli) on project basic: Missing dependencies: org.scala-lang:scala-library:jar:2.13.6 -> [Help 1]");
     }

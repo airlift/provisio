@@ -69,7 +69,7 @@ public class GeneratorIntegrationTest {
         maven.forProject(basedir)
                 .withCliOption("-DdependencyExtendedPomLocation=generated.xml")
                 .execute("provisio:generateDependencies")
-                .assertLogText("[ERROR] Failed to execute goal ca.vanzyl.provisio.maven.plugins:provisio-maven-plugin:")
+                .assertLogText("[ERROR] Failed to execute goal io.airlift:provisio-maven-plugin:")
                 .assertLogText(
                         "generateDependencies (default-cli) on project conflict: Found different versions of the same dependency: org.scala-lang:scala-library:jar:2.13.5, org.scala-lang:scala-library:jar:2.13.6 -> [Help 1]");
     }
