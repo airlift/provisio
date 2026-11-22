@@ -113,8 +113,7 @@ public class ProvisioningIntegrationTest {
 
         maven.forProject(basedir).execute("install").assertErrorFreeLog();
 
-        File installed = file(
-                new TestProperties().getLocalRepository(), "ca/vanzyl/provisio/maven/plugins/its/pom-attachments/1.0");
+        File installed = file(new TestProperties().getLocalRepository(), "io/airlift/provisio/its/pom-attachments/1.0");
         assertArrayEquals(
                 Files.readAllBytes(file(basedir, "pom.xml").toPath()),
                 Files.readAllBytes(file(installed, "pom-attachments-1.0.pom").toPath()));

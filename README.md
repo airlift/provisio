@@ -1,6 +1,6 @@
 # Provisio
 
-[![Maven Central](https://img.shields.io/maven-central/v/ca.vanzyl.provisio.maven.plugins/provisio-maven-plugin.svg?label=Maven%20Central)](https://search.maven.org/artifact/ca.vanzyl.provisio.maven.plugins/provisio-maven-plugin)
+[![Maven Central](https://img.shields.io/maven-central/v/io.airlift/provisio-maven-plugin.svg?label=Maven%20Central)](https://search.maven.org/artifact/io.airlift/provisio-maven-plugin)
 [![Verify](https://github.com/jvanzyl/provisio/actions/workflows/ci.yml/badge.svg)](https://github.com/jvanzyl/provisio/actions/workflows/ci.yml)
 [![Reproducible Builds](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/jvm-repo-rebuild/reproducible-central/master/content/ca/jvanzyl/provisio/maven/plugins/provisio-maven-plugin/badge.json)](https://github.com/jvm-repo-rebuild/reproducible-central/blob/master/content/ca/jvanzyl/provisio/maven/plugins/provisio-maven-plugin/README.md)
 
@@ -28,6 +28,8 @@ Provisio was originally created for the [Presto](https://prestosql.io/) project 
 
 To use Provisio declare its use in your project's `pom.xml` and be sure to set the packaging to `provisio` and enable the plugin as an extension. Provisio implements a Maven `LifecycleParticipant` that inspects all the artifacts used in your runtime descriptor and will order your build accordingly. You might notice below the conspicuous lack of a dependencies section: you do not need to include a dependency in your `pom.xml` for an artifact produced in the current build to have it be included in your runtime. Provisio will find all the artifact references in your runtime descriptor, determine the correct build ordering, and instruct Maven to make the necessary changes.
 
+The example uses the published 2.0.1 release. Starting with 2.1.0, use the `io.airlift` group ID.
+
 ```xml
 <project>
   <groupId>ca.vanzyl.ollie</groupId>
@@ -40,7 +42,7 @@ To use Provisio declare its use in your project's `pom.xml` and be sure to set t
       <plugin>
         <groupId>ca.vanzyl.provisio.maven.plugins</groupId>
         <artifactId>provisio-maven-plugin</artifactId>
-        <version>1.0.7</version>
+        <version>2.0.1</version>
         <extensions>true</extensions>
         <configuration>
           <outputDirectory>${project.build.directory}/presto-server-${project.version}</outputDirectory>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ca.vanzyl.provisio.maven.plugins.its</groupId>
+    <groupId>io.airlift.provisio.its</groupId>
     <artifactId>test</artifactId>
     <version>1.0</version>
     <packaging>provisio</packaging>
@@ -29,7 +29,7 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>ca.vanzyl.provisio.maven.plugins</groupId>
+                <groupId>io.airlift</groupId>
                 <artifactId>provisio-maven-plugin</artifactId>
                 <version>${it-plugin.version}</version>
                 <extensions>true</extensions>
