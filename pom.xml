@@ -41,10 +41,10 @@
   </modules>
 
   <scm>
-    <connection>scm:git:git@github.com/takari/provisio.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/takari/provisio.git</developerConnection>
-    <tag>provisio-1.0.21</tag>
-    <url>http://github.com/takari/provisio</url>
+    <connection>scm:git:https://github.com/airlift/provisio.git</connection>
+    <developerConnection>scm:git:https://github.com/airlift/provisio.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/airlift/provisio</url>
   </scm>
 
   <properties>
@@ -217,4 +217,21 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>github-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+              <arguments>-Ptakari-release -Dnjord.autoPublish=false</arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
