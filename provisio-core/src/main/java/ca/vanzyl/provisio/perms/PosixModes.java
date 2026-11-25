@@ -40,7 +40,7 @@ public final class PosixModes {
      *
      * @param intMode the mode
      * @return a set of POSIX permissions
-     * @throws InvalidIntModeException invalid integer mode
+     * @throws RuntimeException invalid integer mode
      *
      * @see Files#setPosixFilePermissions(Path, Set)
      */

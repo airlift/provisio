@@ -79,7 +79,7 @@ jobs:
           git merge-base --is-ancestor "refs/tags/${RELEASE_TAG}" HEAD
           git checkout --detach "refs/tags/${RELEASE_TAG}"
           echo "VERSION=${RELEASE_TAG}" >> "$GITHUB_ENV"
-          ./mvnw -B -s .mvn/release-settings.xml -Ptakari-release -Dnjord.autoPublish=false deploy
+          ./mvnw -B -s .mvn/release-settings.xml -Ptakari-release,github-release deploy
 
       - name: Run njord:validate
         env:

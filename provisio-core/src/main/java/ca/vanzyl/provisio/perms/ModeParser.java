@@ -49,7 +49,7 @@ public final class ModeParser {
      *
      * @param instructions the instructions
      * @return a permission change object
-     * @throws InvalidModeInstructionException instruction string is invalid
+     * @throws RuntimeException instruction string is invalid
      * @throws UnsupportedOperationException an unsupported instruction was
      * encountered while parsin
      */

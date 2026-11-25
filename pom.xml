@@ -221,13 +221,56 @@
   <profiles>
     <profile>
       <id>github-release</id>
+      <properties>
+        <njord.autoPublish>false</njord.autoPublish>
+        <altDeploymentRepository>sonatype-central-portal::njord:template:release-sca</altDeploymentRepository>
+      </properties>
       <build>
         <plugins>
+          <plugin>
+            <groupId>io.takari.maven.plugins</groupId>
+            <artifactId>takari-lifecycle-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>default-deploy</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.12.0</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <configuration>
+              <skip>false</skip>
+            </configuration>
+            <executions>
+              <execution>
+                <id>default-deploy</id>
+                <goals>
+                  <goal>deploy</goal>
+                </goals>
+                <phase>deploy</phase>
+              </execution>
+            </executions>
+          </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-release-plugin</artifactId>
             <configuration>
-              <arguments>-Ptakari-release -Dnjord.autoPublish=false</arguments>
+              <arguments>-Ptakari-release,github-release</arguments>
             </configuration>
           </plugin>
         </plugins>
